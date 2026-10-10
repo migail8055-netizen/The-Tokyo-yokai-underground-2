@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#090d1b">
+  <title>The Tokyo Yokai Underground: Awakening</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="game-root"></div>
+  <div id="loading"><div class="loader"></div><strong>THE TOKYO YOKAI UNDERGROUND</strong><span>Awakening...</span></div>
+
+  <header class="hud">
+    <div class="brand"><span class="sigil">龍</span><div><b>TOKYO YOKAI</b><small>UNDERGROUND // AWAKENING</small></div></div>
+    <div class="quest"><small>MAIN QUEST</small><b id="quest-title">Investigate the strange gate</b></div>
+    <div class="status"><span>HP</span><div class="bar"><i id="hp-bar"></i></div><b id="hp-text">100 / 100</b></div>
+  </header>
+
+  <div class="crosshair" aria-hidden="true">＋</div>
+  <div class="objective" id="objective">Find the mysterious gate.</div>
+  <div class="hint" id="hint">WASD move · Shift run · Drag to look · E interact · Space attack</div>
+
+  <section id="dialogue" class="dialogue hidden" aria-live="polite">
+    <div class="speaker" id="speaker">WAGURI</div>
+    <div class="dialogue-copy"><p id="line-en"></p><p id="line-ja" class="subline"></p></div>
+    <button id="next-line">CONTINUE <span>↗</span></button>
+  </section>
+
+  <section id="result" class="result hidden">
+    <div class="result-card"><div class="eyebrow">MISSION COMPLETE</div><h1>The Gate Has Awakened</h1>
+      <p>Rintaro's power has answered something on the other side. This was only the beginning.</p>
+      <button id="continue-game">CONTINUE EXPLORING</button>
+      <button id="reset-game" class="ghost">RESET STORY</button>
+    </div>
+  </section>
+
+  <div class="controls">
+    <div class="move-pad">
+      <button data-move="forward" aria-label="Move forward">▲</button>
+      <div><button data-move="left" aria-label="Move left">◀</button><button data-move="back" aria-label="Move back">▼</button><button data-move="right" aria-label="Move right">▶</button></div>
+    </div>
+    <div class="action-pad"><button id="interact-btn">E<br><small>Talk</small></button><button id="attack-btn" class="attack">✦<br><small>Attack</small></button></div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script type="importmap">
+    {"imports":{"three":"https://unpkg.com/three@0.160.0/build/three.module.js"}}
+  </script>
+  <script type="module" src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+    }
+  </script>
+</body>
+</html>
